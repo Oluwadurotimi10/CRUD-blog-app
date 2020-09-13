@@ -7,9 +7,12 @@
         // Post Properties/ Attributes
         public $id;
         public $category_id;
+        public $user_id;
         public $category_name;
+        public $user_name;
         public $title;
         public $body;
+        public $image;
         public $author;
         public $created_at;
         public $modified_at;
@@ -24,8 +27,10 @@
             //Create query
         $query = "SELECT 
             c.name as category_name,
+            u.username as user_name,
             p.id,
             p.category_id,
+            p.user_id,
             p.title,
             p.body,
             p.author,
@@ -35,6 +40,8 @@
             ". $this->table ." p
             LEFT JOIN 
             categories c ON p.category_id = c.id
+            LEFT JOIN
+            users u ON p.user_id = u.id
             ORDER BY 
             p.created_at DESC";
 
@@ -69,7 +76,10 @@
                         title,
                         body,
                         author,
-                        category_id
+                        category_id,
+                        user_id,
+                        created_at,
+                        modified_at
                     FROM
                         " . $this->table . "
                     WHERE
@@ -96,6 +106,9 @@
             $this->body = $body;
             $this->author = $author;
             $this->category_id = $category_id;
+            $this->user_id = $user_id;
+            $this->created_at = $created_at;
+            $this->modified_at = $modified_at;
         } 
 
          //Create Post
@@ -107,6 +120,8 @@
                 title = :title,
                 body = :body,
                 author = :author,
+                image = :image,
+                user_id = :user_id,
                 category_id = :category_id';
 
             //Prepare statement
@@ -116,12 +131,15 @@
             $this->title = htmlspecialchars(strip_tags($this->title));
             $this->body = htmlspecialchars(strip_tags($this->body));
             $this->author = htmlspecialchars(strip_tags($this->author));
+            $this->user_id = htmlspecialchars(strip_tags($this->user_id)); 
             $this->category_id = htmlspecialchars(strip_tags($this->category_id)); 
 
             //Bind data
             $stmt->bindParam(':title', $this->title);
             $stmt->bindParam(':body', $this->body);
             $stmt->bindParam(':author', $this->author);
+            $stmt->bindParam(':image', $this->image);
+            $stmt->bindParam(':user_id', $this->user_id);
             $stmt->bindParam(':category_id', $this->category_id);
         
             //Execute query
@@ -143,6 +161,7 @@
                     title = :title,
                     body = :body,
                     author = :author,
+                    image = :image,
                     category_id = :category_id
                     WHERE   
                     id = :id";
@@ -163,6 +182,7 @@
             $stmt->bindParam(':title', $this->title);
             $stmt->bindParam(':body', $this->body);
             $stmt->bindParam(':author', $this->author);
+            $stmt->bindParam(':image', $this->image);
             $stmt->bindParam(':category_id', $this->category_id);
             $stmt->bindParam(':id', $this->id);
             
