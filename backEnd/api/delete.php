@@ -4,8 +4,8 @@
 
   
    // include database and object files
-   include_once 'C:\xampp\htdocs\phpdocs\CRUD blog app\backEnd\config\Database.php';
-   include_once 'C:\xampp\htdocs\phpdocs\CRUD blog app\backEnd\models\post.php';
+   include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\config\Database.php';
+   include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\models\post.php';
 
   
     // get database connection
@@ -21,9 +21,9 @@
 
     //set page header
     $page_title = "Deleted Post Notification";
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD blog app\includeFiles\head_section.php';
+    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\includeFiles\head_section.php';
 
-    echo "<button class='read-redirec'><a href='/phpdocs/CRUD blog app/index.php'>Read Posts</a></button>";
+    echo "<button class='read-redirec'><a href='/phpdocs/CRUD-blog-app/index.php'>Read Posts</a></button>";
       
     // delete the post
     if($post->delete()){

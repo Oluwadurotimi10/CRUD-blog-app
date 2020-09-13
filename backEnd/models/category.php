@@ -5,7 +5,7 @@
         private $conn;
         private $table = 'categories';
 
-        // Post Properties/ Attributes
+        // category Properties/ Attributes
         public $id;
         public $name;
         
