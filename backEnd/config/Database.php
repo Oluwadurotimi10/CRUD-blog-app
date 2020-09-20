@@ -7,11 +7,11 @@ session_start();
 include (__DIR__ .'/../../path.php');
 
 // Load Composer's autoloader
-require_once(ROOT_PATH.'/vendor/autoload.php');
+//require_once(ROOT_PATH.'/vendor/autoload.php');
 
 
-$dotenv = Dotenv\Dotenv::createUnsafeImmutable(ROOT_PATH);
-$dotenv->load();
+//$dotenv = Dotenv\Dotenv::createUnsafeImmutable(ROOT_PATH);
+//$dotenv->load();
 
 //creating the database class
   class Database {
