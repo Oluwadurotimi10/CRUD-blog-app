@@ -1,4 +1,5 @@
 <?php
+include_once '../../path.php';
 
 session_start();
 unset($_SESSION['id']);
@@ -9,4 +10,4 @@ unset($_SESSION['type']);
 session_destroy();
 
 //redirecting to the home page
-header('location: /phpdocs/CRUD-blog-app/index.php');
+header('location: ../../index.php');

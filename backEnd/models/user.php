@@ -32,6 +32,9 @@
             $this->email = htmlspecialchars(strip_tags($this->email));
             $this->passcode = htmlspecialchars(strip_tags($this->passcode));
 
+            //hashing password for protection
+            $this->passcode = password_hash($this->passcode,PASSWORD_DEFAULT);
+
             //Bind data
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':email', $this->email);
@@ -91,5 +94,38 @@
             $stmt->execute([$email]);
           
             return $stmt;
-        } 
+        }
+        //Update user data
+        public function update(){
+            //Create query
+            $query = "UPDATE 
+                    ". $this->table ."
+                    SET 
+                    passcode = :passcode,
+                    WHERE   
+                    email = :email";
+
+            //Prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            //clean data
+            $this->passcode = htmlspecialchars(strip_tags($this->passcode));
+            $this->email = htmlspecialchars(strip_tags($this->email));
+
+            //hashing password for protection
+            $this->passcode = password_hash($this->passcode,PASSWORD_DEFAULT);
+
+            //Bind data
+            $stmt->bindParam(':passcode', $this->passcode);
+            $stmt->bindParam(':email', $this->email);
+            
+            //Execute query
+            if($stmt->execute()){
+                return true;
+            }else{
+            //Print error if something goes wrong
+            printf("Error: %s.\n",$stmt->error);
+
+            return false; }
+        }
     }

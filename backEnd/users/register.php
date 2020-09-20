@@ -1,8 +1,9 @@
 <?php
     
 // include database and object files
-include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\config\Database.php';
-include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\models\user.php';
+include_once '../config/Database.php';
+include_once '../../path.php';
+include_once '../models/user.php';
 
 // get database connection
 $database = new Database();
@@ -13,12 +14,12 @@ $user = new User($db);
 
 // set page headers
 $page_title = "Registration Form";
-include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\includeFiles\head_section.php';
+include_once '../../includeFiles/head_section.php';
 
 //echo "<button class='read-redirec'><a href='/phpdocs/CRUD-blog-app/index.php'>Read Posts</a></button>";
 
 //including validation
-include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\includeFiles\validation.php';
+include_once '../../includeFiles/validation.php';
 
 
 //setting the conditions for a user to be created
@@ -51,8 +52,8 @@ if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["passcod
         $_SESSION['id'] = $id;
         $_SESSION['username'] = $username;
         $_SESSION['message'] = 'You are now logged in';
-        $_SESSION['type'] = 'success';
-        header('location: /phpdocs/CRUD-blog-app/index.php');
+        $_SESSION['type'] = 'alert alert-success';
+        header('location: ../../index.php');
         exit();
         }
     }
@@ -84,7 +85,7 @@ if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["passcod
         <input type='password' name='passconfirm' class='form-control'/>
         
         <br/><button type="submit" name="register" id="btn" class="btn btn-big">Register</button>
-        <br/><p class="login-redirec"> Or an existing user <a href="<?php echo '/phpdocs/CRUD-blog-app/backEnd/users/login.php' ?>">LogIn</a></p>
+        <br/><p class="login-redirec"> Or an existing user <a href="<?php echo 'login.php' ?>">LogIn</a></p>
 
     </div>
 </form>

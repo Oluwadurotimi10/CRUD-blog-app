@@ -6,10 +6,11 @@
         <title><?php echo $page_title; ?></title>  
 
         <!-- Styling for public area -->
-        <link rel="stylesheet" type="text/css" href='/phpdocs/CRUD-blog-app/others/style_nav.css'>
+        <link rel='stylesheet' type= 'text/css' href= "<?php echo BASE_URL .'/others/style_nav.css' ?>">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Latest compiled and minified Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         
@@ -20,24 +21,28 @@
         <!-- Font Awesome -->
 
         <!--Jquery-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+        
+        <!--custom script 
+        <script>
+        $(document).ready(function(){
+            $('.toggle').click(function(){
+                $('.menu').toggleClass('show');
+            });
+        });
+        </script>-->
 
 </head>
 <body>
+<!-- container -->
+    <!--<div class="container"> </div> -->
+    <?php include_once 'navBar.php'; 
 
-    <!-- container -->
-    <!--<div class="container"> </div>-->
-    <?php include_once 'navBar.php' ?>
-        
-    
-        <?php 
         // show page header
         echo "<div class='page-header'>
-                <h1>{$page_title}</h1>
+                <h3>{$page_title}</h3>
             </div>";
-         
+         //<script src="../others/javascript/script.js">
         ?>
-        <!--custom script -->
-        <script src="/phpdocs/CRUD-blog-app/others/javascript/script.js"></script>
-</body>
-</html>  
+        
+  
