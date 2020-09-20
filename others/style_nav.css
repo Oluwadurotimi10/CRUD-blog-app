@@ -3,10 +3,15 @@
     box-sizing: border-box; 
     margin: 0px;
     padding: 0px; 
+}
+html{
+    min-height:100%;    
   }
 body{
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
       background-image:url(images/plain.jpg);
+      background-position:center;
+      background-repeat: no-repeat;
       background-size: cover;    
   }
 .logo{
@@ -24,9 +29,13 @@ body{
 .toggle{
      display: none;
     }
+.checkbtn, #check{
+    display: none;
+    }
 .logo-text{
+    font-size: 2.5em;
     margin: 10px;
-    color: rgb(94, 43, 43);      
+    color: rgb(91,43,43);      
     }
 .logo-text > span{
     color: rgb(131, 29, 29);
@@ -41,7 +50,7 @@ body{
     margin-left:21px;
     margin-top:21px;
     margin-right:21px;
-    font-size:1.2em;
+    font-size:1.4em;
     text-decoration: none;
     color: rgb(94, 43, 43); 
     border-bottom: 1px transparent;        
@@ -74,21 +83,51 @@ body{
 .navbar ul li a .drop{
     font-size:0.8em;
 }
+.clearfix::after{
+    content:'';
+    display:block;
+    clear:both;
+}
+.btn{
+    padding:0.5px;
+    background: rgb(110, 110, 131);
+    color:white;
+}
 
 /* index page styling */
 .error{
     color:red;
 }
+.blog-wrapper{
+    width:90%;
+    margin: 30px auto 30px;
+}
 .each-wrapper{
+    width:60%;
+    float: left;
+    margin:10px;
+    border-radius:5px;  
+}
+.each-wrapper img, .Rone-wrapper img{
+    width:300px;
+    height:300px;
+    float:left;
+    padding:20px;
+}
+.title-wrapper, .body-wrapper, .author-wrapper, .category-wrapper{
+    color:rgb(68, 48, 32);
+    font-size: 16px;
+}
+/*.each-wrapper{
     max-width : 500px;
     max-height: 800px;
     margin : 20px;
     margin-left: 200px;
     padding: 10px;
     box-sizing :border-box;
-    border-radius: 15px;
-    
-}
+    border-radius: 15px;   
+}*/
+
 /* api pages styling */
 .create-wrapper, .update-wrapper{
     max-width : 600px;
@@ -109,7 +148,7 @@ body{
     border-radius:20px;
 }
 .text-wrapper{
-    color: rgb(94, 43, 43); 
+    color: rgb(97, 41, 41); 
 }
 .read-redirec, .update-redirec{
     background-color:  rgb(27, 111, 133);;
@@ -143,11 +182,11 @@ div #edit_popup{
     border-radius:5px;
 } 
 .Rone-wrapper h3{
-    color: rgb(43, 21, 21); 
+    color: rgb(94, 42, 42); 
     font-family: cursive;
 }  
 .Rone-wrapper p{
-    color: rgb(104, 41, 65); 
+    color: rgb(70, 24, 39); 
 }
 .delete-noti{
     font-size: 20;
@@ -156,46 +195,138 @@ div #edit_popup{
 .login-redirec, .register-redirec{
     text-align: center;
 } 
+/*search box styles*/
+.search-wrapper{
+    float:right;
+}
+.search-box{
+    position: relative;
+    top:30%; 
+    left: 20%;   
+    transform: translate(-50%,-50%);
+    background: rgb(98, 98, 133);;
+    height:40px;
+    border-radius:20px;
+    padding:10px;  
+}
+.search-btn{
+    color:rgb(98, 98, 133);
+    float:right;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:rgb(98, 98, 133);
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+.search-text{
+    border:none;
+    background:none;
+    outline:none;
+    float:left;
+    padding:0px;
+    color:white;
+    transition: 0.4s;
+    width:240px;
+}
+::placeholder{
+    color:white;
+}
+/*password recovery styling*/
+.forgotpass{
+    text-align: center;
+}
+.forgotpass a, .register-redirec a{
+    color:rgb(40, 43, 206);
+}
+/* reset password styling */
+.reset-wrapper h3, .passreset-wrapper h3{
+    text-align:center;
+}
+.reset-wrapper-inner, .passreset-wrapper-inner{
+    max-width : 400px;
+    max-height: 1000px;
+    padding: 3px;
+    margin:auto;
+    box-sizing :border-box;
+    box-shadow : 0 15px 25px rgba(10, 51, 51, 0.6);
+    border-radius:5px;
+}
+.reset-wrapper-inner button, .passreset-wrapper-inner button{
+    background: rgb(90, 179, 214);
+    border-color: rgb(83, 181, 219);
+}
 /*MEDIA QUERIES*/
-@media only screen and (max-width:750px){
+/* for mobile */
+@media only screen and (max-width:800px){
+    
     .navbar{
         position: relative;
     }
     .navbar ul{
-        width:100%;   
-        max-height:0px;
-        display:none;
+        position: absolute; 
+        width:100%;
+        background: rgb(54, 80, 105);
+        top:50px;
+        left:-100%;  
+        text-align: center;  
+        transition : all .5s;  
     }
     .navbar ul li{
-        width: 100%;  
+        width:100%;
+        padding: 0px;
+        margin:0px;
+        display:block;
     }
     .navbar ul li a{
-        display: block;
+        font-size:1.2em;
+        padding: 2px;
+        color: rgb(214, 185, 185); 
+        text-decoration: none; 
     }
     .navbar ul li a:hover{
-        border-bottom: 1px transparent;
+        color: rgb(128, 81, 81); 
+        border-bottom: 1px transparent;  
     }
     .navbar ul li ul{
         position:static;
+        display:none;
+        margin-right: 80px;
+    }
+    .navbar ul li:hover ul{
         display:block;
-        width:100%;
     }
     .navbar ul li ul li a{
-        padding-left:50px;
+        padding-right:170px;
     }
-    .toggle{
+    .toggle, .checkbtn{
         display:block;
-        position:absolute;
-        right: 20px;
+        position:fixed;
+        right: 10px;
         top:15px;
         font-size:1.9em;
+        cursor: pointer; 
+    }
+    #check:checked ~ul{
+        left:0;
+    }
+    .logo{
+        float: left;
+        height: 66px;
+        margin-left: 0.5em;
+        cursor: pointer; 
+    }
+    .search-box{
+        top:30px; 
+        margin-left:50px;
     }
     .logo-text{
         margin-left:.1em;    
         }
     
      /* api pages styling */
-    .create-wrapper, .update-wrapper, .register-wrapper{
+    .create-wrapper, .update-wrapper, .register-wrapper, .login-wrapper, .reset-wrapper-inner, .passreset-wrapper-inner{
         max-width : 300px;
         max-height: 1000px;
         padding: 5px;
@@ -203,8 +334,5 @@ div #edit_popup{
         box-sizing :border-box;
         box-shadow : 0 15px 25px rgba(10, 51, 51, 0.6);
         border-radius:20px;
-}
-.showing{
-    display:block;
 }
     }

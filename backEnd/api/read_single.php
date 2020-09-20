@@ -2,11 +2,12 @@
 // get ID of the post to be read
     $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
     
-    // include database and object files
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\config\Database.php';
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\models\post.php';
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\models\category.php';
-    
+     // include database,path and object files
+     include_once '../config/Database.php';
+     include_once '../../path.php';
+     include_once '../models/post.php';
+     include_once '../models/category.php';
+       
     // get database connection
     $database = new Database();
     $db = $database->connect();
@@ -23,17 +24,18 @@
 
 // set page headers
     $page_title = "Viewing A Single Post";
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\includeFiles\head_section.php';
+    include_once '../../includeFiles/head_section.php';
 
     //ensures user is logged in
     if(isset($_SESSION['id'])){
 
     // read products button
-    echo "<button class='read-redirec'><a href='/phpdocs/CRUD-blog-app/index.php'>Read Posts</a></button>";
+    echo "<button class='read-redirec'><a href='../../index.php'>Read Posts</a></button>";
 
     //table displaying a single post
     // HTML table for displaying a product details
     echo "<div class = 'Rone-wrapper'>";
+            echo "<img src ='../../others/images/{$post->image}' alt='' class='post-image'>";
 
             echo "<h3>Title </h3>";
             echo "<p>{$post->title}</p>";

@@ -1,10 +1,11 @@
 <?php
     
     // include database and object files
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\config\Database.php';
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\models\post.php';
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\models\category.php';
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\models\user.php';
+    include_once '../config/Database.php';
+    include_once '../../path.php';
+    include_once '../models/post.php';
+    include_once '../models/category.php';
+    include_once '../models/user.php';
     
     // get database connection
     $database = new Database();
@@ -17,19 +18,24 @@
 
 // set page headers
 $page_title = "Create Post";
-include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\includeFiles\head_section.php';
+include_once '../../includeFiles/head_section.php';
+//including validation
+include_once '../../includeFiles/postValidation.php';
   
-echo "<button class='read-redirec'><a href='/phpdocs/CRUD-blog-app/index.php'>Read Posts</a></button>";
+echo "<button class='read-redirec'><a href='../../index.php'>Read Posts</a></button>";
   
 
-    // if the form was submitted 
-    if($_POST){
     
+    //setting the conditions for a post to be created
+if (isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["body"]) && isset($_FILES['image']['name'])){
+    if(!empty($_POST["title"]) && !empty($_POST["author"]) && !empty($_POST["body"]) && !empty($_FILES['image']['name'])){
+        if(empty($titleErr) && empty($authorErr) && empty($bodyErr) && empty($imageErr)){
+              
         // set product property values
-        $post->title = $_POST['title'];
-        $post->author = $_POST['author'];
-        $post->body = $_POST['body'];
-        $post->image = $_POST['image'];
+        $post->title = $title;
+        $post->author = $author;
+        $post->body = $body;
+        $post->image = $image;
         $post->user_id = $_SESSION['id'];
         $post->category_id = $_POST['category_id'];
     
@@ -43,21 +49,27 @@ echo "<button class='read-redirec'><a href='/phpdocs/CRUD-blog-app/index.php'>Re
             echo "<div class='alert alert-danger'>Unable to create post.</div>";
         }
     }
+ }
+} 
 ?>
-  
+ 
 <!-- HTML form for creating a post -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class = "create-wrapper">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype = "multipart/form-data" class = "create-wrapper">
 <div class = "create-inner-wrapper">
             <h4 class = "text-wrapper"> Title </h4>
-            <input type='text' name='title' class='form-control' />
+            <span class ="error"> <?php echo $titleErr;?></span> 
+            <input type='text' id='title' name='title' value = '<?php echo $title ?>' class='form-control' />
 
             <h4 class = "text-wrapper">Author </h4>
-            <input type='text' name='author' class='form-control' />
+            <span class ="error"> <?php echo $authorErr;?></span>
+            <input type='text' id='author' name='author' value = '<?php echo $author ?>' class='form-control' />
 
-            <h4 class = "text-wrapper">Body </h4>
-            <textarea name='body' class='form-control'></textarea>
+            <h4 class = 'text-wrapper'>Body </h4>
+            <span class ="error"> <?php echo $bodyErr;?></span>
+            <textarea name='body' class='form-control'><?php if(!empty($_POST["body"])){ echo $body; } ?></textarea>
 
             <h4 class = "text-wrapper">Image </h4>
+            <span class ="error"> <?php echo $imageErr;?></span>
             <input type='file' name='image' class='form-control' />
 
             <h4 class = "text-wrapper">Category </h4>
@@ -75,7 +87,7 @@ echo "<button class='read-redirec'><a href='/phpdocs/CRUD-blog-app/index.php'>Re
                     }
                 echo "</select>";
 
-                echo "<br/><button type='submit' class='btn btn-primary'>Create</button>";
+                echo "<br/><button type='submit' name='create'  class='btn btn-primary'>Create</button>";
             ?>
            </div>
 </form>

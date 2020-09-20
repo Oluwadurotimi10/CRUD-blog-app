@@ -33,6 +33,7 @@
             p.user_id,
             p.title,
             p.body,
+            p.image,
             p.author,
             p.created_at,
             p.modified_at
@@ -76,6 +77,7 @@
                         title,
                         body,
                         author,
+                        image,
                         category_id,
                         user_id,
                         created_at,
@@ -105,6 +107,7 @@
             $this->title = $title;
             $this->body = $body;
             $this->author = $author;
+            $this->image = $image;
             $this->category_id = $category_id;
             $this->user_id = $user_id;
             $this->created_at = $created_at;
@@ -176,8 +179,6 @@
             $this->category_id = htmlspecialchars(strip_tags($this->category_id));
             $this->id = htmlspecialchars(strip_tags($this->id));
 
-
-
             //Bind data
             $stmt->bindParam(':title', $this->title);
             $stmt->bindParam(':body', $this->body);
@@ -219,4 +220,44 @@
                 return false;
             }
         }
+
+    //allows a user search for posts
+    // read products by search term
+    public function search($search_term){
+  
+    // select query
+    $query = "SELECT
+                c.name as category_name,
+                p.id,
+                p.title,
+                p.author,
+                p.body, 
+                p.image,
+                p.category_id, 
+                p.created_at
+            FROM
+                " . $this->table . " p
+                LEFT JOIN
+                categories c
+                ON p.category_id = c.id
+            WHERE
+                p.title LIKE ? OR p.author LIKE ?
+            ORDER BY
+                p.title ASC";
+
+            //prepare statement
+            $stmt = $this->conn->prepare( $query );
+
+            // bind variable values
+            $search_term = "%{$search_term}%";
+            $stmt->bindParam(1, $search_term);
+            $stmt->bindParam(2, $search_term);
+            
+        
+            // execute query
+            $stmt->execute();
+        
+            // return values from database
+            return $stmt;  
+}          
     }

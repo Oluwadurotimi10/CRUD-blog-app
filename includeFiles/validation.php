@@ -1,14 +1,8 @@
 <?php 
 
-// include database and object files
-include_once 'C:\xampp\htdocs\phpdocs\CRUD-blog-app\backEnd\config\Database.php';
-
-// get database connection
-$database = new Database();
-
 // defining varaibles and setting them to empty values
       $usernameErr = $emailErr = $passErr = $unidenticalpass = "";
-      $username = $email = $pass = $passconfirm = $register =  "";
+      $username = $email = $pass = $passconfirm = $register = $userEmail =  "";
 
 // if the form was submitted for registration
 if (isset($_POST['register'])){
@@ -84,6 +78,42 @@ if (isset($_POST['login'])){
     }
     else{
         $pass = $_POST['passcode'];
+    }
+}
+
+//if the form was submitted for reset
+if (isset($_POST['reset-request'])){
+
+if(empty($_POST['email'])){
+    $emailErr = "Email is required";
+}
+else{
+    $userEmail = test_input($_POST['email']);
+     }
+    }
+
+//if new password form was submitted
+if (isset($_POST['passResetSubmit'])){
+    if(empty($_POST['pwd'])){
+        $passErr = "New password is required";
+    }
+    else{
+        $pass = $_POST['pwd'];
+        // checking if password is valid
+        $pattern = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?([^\w\s]|[_])).{6,}$/";
+        if(!preg_match($pattern, $pass)){
+            $passErr = "The password must have at least one number, a special character, a lower and uppercase letter and a minimum of eight characters";
+        }
+    }
+    if(empty($_POST['pwd_repeat'])){
+        $unidenticalpass = "Please confirm the new password";
+    }
+    else{
+        $pass = $_POST['pwd'];
+        $passconfirm = $_POST['pwd_repeat'];
+        if($passconfirm != $pass){
+            $unidenticalpass = "This password does not match the one above";
+        }
     }
 }
 

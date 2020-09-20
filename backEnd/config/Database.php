@@ -3,14 +3,32 @@
 //starting session here, since this file is included in every other file
 session_start();
 
-//cretating the database class
-    class Database {
-        //DB Params
-        private $host = 'localhost';
-        private $dbname = 'myblog';
-        private $username = 'root';
-        private $password = '#thankFUL02';
+//including the path
+include (__DIR__ .'/../../path.php');
+
+// Load Composer's autoloader
+require_once(ROOT_PATH.'/vendor/autoload.php');
+
+
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(ROOT_PATH);
+$dotenv->load();
+
+//creating the database class
+  class Database {
+         
+        //DB Params 
+        private $host; 
+        private $dbname ;
+        private $username; 
+        private $password ;
         public $conn;
+
+        public function __construct(){
+            $this->host = getenv('DB_HOST');
+            $this->dbname = getenv('DB_DBNAME');
+            $this->username = getenv('DB_USER');
+            $this->password = getenv('DB_PASSWORD');
+        }
     
      //DB Connect
      public function connect(){
@@ -32,5 +50,6 @@ session_start();
         die();
     }
 }
-
+//$hi = new Database;
+//echo($hi->host);
 ?>
