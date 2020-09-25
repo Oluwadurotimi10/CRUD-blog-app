@@ -94,6 +94,6 @@ if (isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["body"]) &
   
 <?php
 
- /* //adding page footer
-    include_once "includeFiles/footer.php"
-    ?> */
+  //adding page footer
+  include_once '../../includeFiles/footer.php';
+    ?> 

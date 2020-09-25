@@ -82,3 +82,9 @@ if (isset($_POST["email"]) && isset($_POST["passcode"])){
         <div class="forgotpass"><a href="index.php"> Forgot your password?</a></div>
         </form>
     </div>
+
+    <?php
+
+//adding page footer
+include_once '../../includeFiles/footer.php';
+  ?> 

@@ -34,15 +34,22 @@
 
 </head>
 <body>
+
 <!-- container -->
     <!--<div class="container"> </div> -->
     <?php include_once 'navBar.php'; 
 
+    // search_template contains the search form 
+    if($page_title == "Read Posts"){
+    include_once(ROOT_PATH. "/backEnd/api/search_template.php"); 
+}
         // show page header
         echo "<div class='page-header'>
                 <h3>{$page_title}</h3>
             </div>";
          //<script src="../others/javascript/script.js">
+
+          
         ?>
         
   

@@ -24,7 +24,7 @@
     $category = new Category($db);
 
      // search_template contains the search form 
-     include_once "backEnd/api/search_template.php";
+     //include_once "backEnd/api/search_template.php";
 
     // query products
     $results = $post->read();
@@ -114,9 +114,8 @@ if($num>0){
     }
     echo "</div>";
 
-
      //adding page footer
-    //include_once "includeFiles/footer.php"
+    include_once "includeFiles/footer.php"
     ?> 
 
     

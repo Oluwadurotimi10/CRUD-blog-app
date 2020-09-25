@@ -31,6 +31,8 @@
             $this->username = htmlspecialchars(strip_tags($this->username));
             $this->email = htmlspecialchars(strip_tags($this->email));
             $this->passcode = htmlspecialchars(strip_tags($this->passcode));
+            $this->created_at = null;
+            $this->modified_at = null;
 
             //hashing password for protection
             $this->passcode = password_hash($this->passcode,PASSWORD_DEFAULT);
@@ -111,6 +113,7 @@
             //clean data
             $this->passcode = htmlspecialchars(strip_tags($this->passcode));
             $this->email = htmlspecialchars(strip_tags($this->email));
+            $this->modified_at = null;
 
             //hashing password for protection
             $this->passcode = password_hash($this->passcode,PASSWORD_DEFAULT);
