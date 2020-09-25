@@ -139,3 +139,4 @@ if((isset($_POST["email"])) && (!empty($_POST["email"])) && (empty($emailErr))){
 <?php
 //including footer
 include_once(ROOT_PATH.'/includeFiles/footer.php');
+?>

@@ -125,6 +125,8 @@ if (isset($_GET["token"]) && isset($_GET["email"]) && isset($_GET["action"])
                     Click here</a> to reset password.</p>';  
             }
         }
-    
 
+//adding page footer
+include_once(ROOT_PATH.'/includeFiles/footer.php');
+    ?> 
     

@@ -61,6 +61,6 @@
         echo "<div class='alert alert-danger'>Please ensure you are logged in</div>";
     }  
     
-   /* //adding page footer
-    include_once 'C:\xampp\htdocs\phpdocs\CRUD blog app\includeFiles\footer.php';
-    ?> */
+    //adding page footer
+    include_once '../../includeFiles/footer.php';
+    ?> 

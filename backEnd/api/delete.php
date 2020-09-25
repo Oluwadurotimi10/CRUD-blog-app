@@ -35,4 +35,5 @@
         echo "<p class = 'delete-noti'>Unable to delete post</p>";
     }
 
+include_once '../../includeFiles/footer.php';  
 ?>

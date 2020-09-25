@@ -89,3 +89,8 @@ if (isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["passcod
 
     </div>
 </form>
+<?php
+
+  //adding page footer
+  include_once '../../includeFiles/footer.php';
+    ?> 

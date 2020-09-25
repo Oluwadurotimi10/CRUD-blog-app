@@ -136,6 +136,9 @@
             $this->author = htmlspecialchars(strip_tags($this->author));
             $this->user_id = htmlspecialchars(strip_tags($this->user_id)); 
             $this->category_id = htmlspecialchars(strip_tags($this->category_id)); 
+            $this->created_at = null;
+            $this->modified_at = null;
+
 
             //Bind data
             $stmt->bindParam(':title', $this->title);
@@ -178,6 +181,7 @@
             $this->author = htmlspecialchars(strip_tags($this->author));
             $this->category_id = htmlspecialchars(strip_tags($this->category_id));
             $this->id = htmlspecialchars(strip_tags($this->id));
+            $this->modified_at = null;
 
             //Bind data
             $stmt->bindParam(':title', $this->title);
